@@ -1,0 +1,27 @@
+name: Update adbfriend formula
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'New version of adbfriend'
+        required: true
+      sha:
+        description: 'Expected sha of the zip release'
+        required: true
+jobs:
+  adbfriend:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: bash .template/render.sh .template/adbfriend.rb Formula/adbfriend.rb
+        env:
+          VERSION: ${{ github.event.inputs.version }}
+          SHA:  ${{ github.event.inputs.sha }}
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v3
+        with:
+          commit-message: Update adbfriend to ${{ github.event.inputs.version }}
+          title: Update adbfriend to ${{ github.event.inputs.version }}
+          branch: update-adbfriend
+          base: main
