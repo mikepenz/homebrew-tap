@@ -1,4 +1,4 @@
-class AdbFriend < Formula
+class Adbfriend < Formula
     desc "Android ADB CLI tool with common actions used during development"
     homepage "https://github.com/mikepenz/adbfriend/"
     url "https://github.com/mikepenz/adbfriend/releases/download/1.3.3/adbfriend-cli-shadow-1.3.3.zip"
