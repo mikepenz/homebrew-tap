@@ -1,5 +1,7 @@
 name: Update adbfriend formula
 on:
+  repository_dispatch:
+    types: [update-tap]
   workflow_dispatch:
     inputs:
       version:
@@ -15,16 +17,33 @@ jobs:
       contents: write
       pull-requests: write
     steps:
-      - uses: actions/checkout@v4
-      - run: bash .template/render.sh .template/adbfriend.rb Formula/adbfriend.rb
-        env:
-          VERSION: ${{ github.event.inputs.version }}
-          SHA:  ${{ github.event.inputs.sha }}
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set env variables
+        if: ${{ github.event_name == 'repository_dispatch' }}
+        run: |
+          echo "VERSION=${{ github.event.client_payload.version }}" >> $GITHUB_ENV
+          echo "SHA=${{ github.event.client_payload.sha }}" >> $GITHUB_ENV
+
+      - name: Set env variables
+        if: ${{ github.event_name == 'workflow_dispatch' }}
+        run: |
+          echo "VERSION=${{ github.event.inputs.version }}" >> $GITHUB_ENV
+          echo "SHA=${{ github.event.inputs.sha }}" >> $GITHUB_ENV
+
+      - name: Set variable
+        id: combined
+        run: |
+          echo "VERSION=$VERSION" >> "$GITHUB_OUTPUT"
+
+      - name: Update Formula
+        run: bash .template/render.sh .template/adbfriend.rb Formula/adbfriend.rb
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v7
         with:
-          commit-message: Update adbfriend to ${{ github.event.inputs.version }}
-          title: Update adbfriend to ${{ github.event.inputs.version }}
+          commit-message: Update adbfriend to ${{ steps.combined.outputs.VERSION }}
+          title: Update adbfriend to ${{ steps.combined.outputs.VERSION }}
           branch: update-adbfriend
           base: main
