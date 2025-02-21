@@ -5,9 +5,6 @@ class Adbfriend < Formula
     sha256 "aeac8a9676f82115252306ab309e57949a6c1b996dce853c71b6f6a03d6f81de"
     version "1.3.3"
     license "Apache-2.0"
-
-    depends_on "openjdk@17"
-
     def install
         rm_f Dir["bin/*.bat"]
         libexec.install %w[bin lib]
