@@ -1,9 +1,9 @@
 class Adbfriend < Formula
     desc "Android ADB CLI tool with common actions used during development"
     homepage "https://github.com/mikepenz/adbfriend/"
-    url "https://github.com/mikepenz/adbfriend/releases/download/2.0.0-a02/adbfriend-cli-shadow-2.0.0-a02.zip"
-    sha256 "538b00d4dedcc293db8a59081fae065bdb983b45ee204c4b953ad6d6fe59fca3"
-    version "2.0.0-a02"
+    url "https://github.com/mikepenz/adbfriend/releases/download/2.0.0-a03/adbfriend-cli-shadow-2.0.0-a03.zip"
+    sha256 "972fe5c7cff49fbf092271d95c8fb7bb8c2c4b342d299be74466889b1ed310a0"
+    version "2.0.0-a03"
     license "Apache-2.0"
     def install
         rm_f Dir["bin/*.bat"]
