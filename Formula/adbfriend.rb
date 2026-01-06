@@ -8,6 +8,6 @@ class Adbfriend < Formula
     def install
         rm_f Dir["bin/*.bat"]
         libexec.install %w[bin lib]
-        (bin/"adbfriend").write_env_script libexec/"bin/adbfriend", Language::Java.overridable_java_home_env
+        (bin/"adbfriend").write_env_script libexec/"bin/adbfriend-cli", Language::Java.overridable_java_home_env
     end
 end
