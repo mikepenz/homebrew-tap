@@ -1,17 +1,17 @@
-name: Update adbfriend formula
+name: Update compose-buddy formula
 on:
   repository_dispatch:
-    types: [update-tap]
+    types: [update-compose-buddy]
   workflow_dispatch:
     inputs:
       version:
-        description: 'New version of adbfriend'
+        description: 'New version of compose-buddy'
         required: true
       sha:
         description: 'Expected sha of the zip release'
         required: true
 jobs:
-  adbfriend:
+  compose-buddy:
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -38,12 +38,12 @@ jobs:
           echo "VERSION=$VERSION" >> "$GITHUB_OUTPUT"
 
       - name: Update Formula
-        run: bash .template/render.sh .template/adbfriend.rb Formula/adbfriend.rb "https://github.com/mikepenz/adbfriend/releases/download/${VERSION}/adbfriend-cli-shadow-${VERSION}.zip"
+        run: bash .template/render.sh .template/compose-buddy.rb Formula/compose-buddy.rb "https://github.com/mikepenz/compose-buddy/releases/download/${VERSION}/compose-buddy-cli-${VERSION}.zip"
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v8
         with:
-          commit-message: Update adbfriend to ${{ steps.combined.outputs.VERSION }}
-          title: Update adbfriend to ${{ steps.combined.outputs.VERSION }}
-          branch: update-adbfriend
+          commit-message: Update compose-buddy to ${{ steps.combined.outputs.VERSION }}
+          title: Update compose-buddy to ${{ steps.combined.outputs.VERSION }}
+          branch: update-compose-buddy
           base: main
