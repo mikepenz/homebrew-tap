@@ -4,10 +4,11 @@ set -xe
 
 INPUT="$1"
 OUTPUT="$2"
+URL="$3"
 
 echo "Rendering for version $VERSION, expected sha is $SHA"
-URL="https://github.com/mikepenz/adbfriend/releases/download/${VERSION}/adbfriend-cli-shadow-${VERSION}.zip"
-SHA256="$(curl -L $URL | sha256sum | cut -d " " -f 1)"
+echo "URL: $URL"
+SHA256="$(curl -L "$URL" | sha256sum | cut -d " " -f 1)"
 echo "Calculated SHA256 $SHA256"
 
 if [ "$SHA" == "$SHA256" ]; then
