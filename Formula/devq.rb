@@ -1,28 +1,28 @@
 class Devq < Formula
   desc "Serialise access to shared Android devices between AI agents"
   homepage "https://github.com/mikepenz/agent-device-orchestrator"
-  version "0.1.2"
+  version "0.2.0"
   license "Apache-2.0"
 
   base = "https://github.com/mikepenz/agent-device-orchestrator/releases/download/v#{version}/devq-#{version}"
   on_macos do
     on_arm do
       url "#{base}-aarch64-apple-darwin.tar.gz"
-      sha256 "902bd4ab36ecfa8eb2ec133dc1b553d1dc5f252420669e6000a1706b670adc13"
+      sha256 "86eeb5da9d045594612816a4fd97c1d048f2ecff128dd008b0194fb10455e6f6"
     end
     on_intel do
       url "#{base}-x86_64-apple-darwin.tar.gz"
-      sha256 "e8634b06c6ae3deb6010537bdbf8cc93e241d890f0a51fcd4cf3d6f23c806668"
+      sha256 "901c289be571100899684ac3d5e7b615a65b0b2697f415c38dce8bd76b3b69e9"
     end
   end
   on_linux do
     on_arm do
       url "#{base}-aarch64-unknown-linux-gnu.tar.gz"
-      sha256 "15c91c9c688b21f3ddefa9980dc8f19c86bd9b271cb298f497963a69393dd65d"
+      sha256 "c13a7f94a43dd62601aead8c43613a5a0601d30e4d7350c5ddcaa6d284f41839"
     end
     on_intel do
       url "#{base}-x86_64-unknown-linux-gnu.tar.gz"
-      sha256 "176374b053700874bbe99667909b9bc274ec876654ac2667cafcbf722fe612ca"
+      sha256 "ca47d30d481dbe7ec4a94a06e8899585f9a31486c87343fb034ca379059b40af"
     end
   end
 
